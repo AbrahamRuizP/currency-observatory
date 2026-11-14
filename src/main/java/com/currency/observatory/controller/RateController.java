@@ -16,10 +16,12 @@ public class RateController {
 
     private final RateService rateService;
     private final RateMapper rateMapper;
+    private static final List<String> mainQuotes
+            = List.of("USD", "EUR", "CAD");
 
     @GetMapping
-    public List<RateDto> getRates() {
-        List<Rate> rates = rateService.findAll();
+    public List<RateDto> getMainRates() {
+        List<Rate> rates = rateService.findByQuoteIn(mainQuotes);
 
         return rates.stream()
                 .map(rateMapper::toDto)
