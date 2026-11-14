@@ -19,6 +19,10 @@ public class RateService {
     private final RateRepository repository;
     private final RateMapper mapper;
 
+    public List<Rate> findAll() {
+        return repository.findAll();
+    }
+
     @Transactional
     public void importRates() {
         List<RateDto> dtoList = observatoryClient.fetchUyuRates();
