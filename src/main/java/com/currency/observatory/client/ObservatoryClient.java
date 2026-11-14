@@ -1,6 +1,6 @@
 package com.currency.observatory.client;
 
-import com.currency.observatory.entity.RateDto;
+import com.currency.observatory.controller.dto.RateDto;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
