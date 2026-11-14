@@ -1,13 +1,11 @@
 package com.currency.observatory.controller;
 
 import com.currency.observatory.entity.Rate;
-import com.currency.observatory.entity.RateDto;
+import com.currency.observatory.controller.dto.RateDto;
 import com.currency.observatory.mapper.RateMapper;
 import com.currency.observatory.service.RateService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +24,11 @@ public class RateController {
         return rates.stream()
                 .map(rateMapper::toDto)
                 .toList();
+    }
+
+    @GetMapping("/{quote}")
+    public RateDto getRateByQuote(@PathVariable String quote) {
+        Rate rate = rateService.findByQuote(quote);
+        return rateMapper.toDto(rate);
     }
 }

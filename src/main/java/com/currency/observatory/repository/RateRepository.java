@@ -4,7 +4,10 @@ import com.currency.observatory.entity.Rate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface RateRepository extends JpaRepository<Rate, UUID> {}
+public interface RateRepository extends JpaRepository<Rate, UUID> {
+    Optional<Rate> findByQuote(String quote);
+}
