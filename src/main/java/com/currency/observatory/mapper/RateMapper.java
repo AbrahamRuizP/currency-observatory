@@ -7,4 +7,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface RateMapper {
     Rate toEntity(RateDto rateDto);
+    RateDto toDto(Rate rate);
 }
