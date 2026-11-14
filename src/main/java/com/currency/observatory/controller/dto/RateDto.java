@@ -1,4 +1,4 @@
-package com.currency.observatory.entity;
+package com.currency.observatory.controller.dto;
 
 import java.math.BigDecimal;
 
