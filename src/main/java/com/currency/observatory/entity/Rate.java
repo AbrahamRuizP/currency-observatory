@@ -21,7 +21,7 @@ public class Rate {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 19, scale = 10)
     private BigDecimal rate;
 
     @Column(length = 5, nullable = false)
@@ -29,6 +29,9 @@ public class Rate {
 
     @Column(length = 5, nullable = false)
     private String quote;
+
+    @Column(nullable = false)
+    private String date;
 
     @Column(name = "created_at", nullable = false)
     private Instant createdAt;
