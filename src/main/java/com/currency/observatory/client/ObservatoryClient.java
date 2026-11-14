@@ -18,9 +18,9 @@ public class ObservatoryClient {
                 .build();
     }
 
-    public List<RateDto> fetchRates() {
+    public List<RateDto> fetchUyuRates() {
         return restClient.get()
-                .uri("rates")
+                .uri("rates?base=uyu")
                 .retrieve()
                 .body(new ParameterizedTypeReference<>() {});
     }
