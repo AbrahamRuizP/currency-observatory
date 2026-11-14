@@ -1,7 +1,7 @@
 package com.currency.observatory.mapper;
 
 import com.currency.observatory.entity.Rate;
-import com.currency.observatory.entity.RateDto;
+import com.currency.observatory.controller.dto.RateDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
