@@ -27,7 +27,7 @@ public class Rate {
     @Column(length = 5, nullable = false)
     private String base;
 
-    @Column(length = 5, nullable = false)
+    @Column(length = 5, nullable = false, unique = true)
     private String quote;
 
     @Column(nullable = false)
