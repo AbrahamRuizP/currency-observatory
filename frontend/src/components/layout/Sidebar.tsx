@@ -12,7 +12,7 @@ export default function Sidebar() {
                 <div className="small fw-bold mt-1">UYU Obs.</div>
             </div>
 
-            <div className="card-soft w-100 py-3 d-flex flex-column align-items-center gap-4">
+            <div className="card-soft w-100 py-3 d-flex flex-column align-items-center justify-content-evenly gap-4 h-100">
                 <span className="rail-active"><FiGrid/></span>
                 {ICONS.map((Icon, i) => (
                     <Icon key={i} className="text-secondary" size={18}/>
