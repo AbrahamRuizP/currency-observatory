@@ -10,13 +10,14 @@ import ExchangeRateOverview from "./components/ExchangeRateOverview.tsx";
 import TransactionsTable from "./components/TransactionsTable.tsx";
 import {useRates} from "./hooks/useRates.tsx";
 import LoadingPage from "./components/LoadingPage.tsx";
+import ErrorPage from "./components/ErrorPage.tsx";
 
 function App() {
     const {rates, error, loading} = useRates();
     // Quote currency currently shown in the chart (drives the whole dashboard)
     const [selectedQuote, setSelectedQuote] = useState<string | null>(null);
 
-    if (error) return <div className="p-5 text-danger">Error: {error}</div>;
+    if (error) return <ErrorPage error={error} />;
     if (loading) return <LoadingPage />;
 
     const active = selectedQuote ?? rates[0]?.quote;

@@ -73,3 +73,28 @@
 @media (prefers-reduced-motion: reduce) {
   .loading-logo { animation: none; }
 }
+
+/* ERROR PAGE */
+.error-page {
+  min-height: 100svh;
+}
+
+.error-icon {
+  display: grid; place-items: center;
+  width: 72px; height: 72px;
+  border-radius: 1.25rem;
+  background: var(--surface);
+  color: #dc3545;
+  box-shadow: 0 2px 12px rgba(30, 40, 90, 0.06);
+}
+
+.error-message {
+  max-width: 480px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  background: var(--surface);
+  color: #dc3545;
+  font-size: 0.8rem;
+  text-align: center;
+  word-break: break-word;
+}
