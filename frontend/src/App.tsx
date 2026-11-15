@@ -29,16 +29,14 @@ function App() {
                 <aside className="col-12 col-xl-3 d-flex flex-column gap-3">
                     <CalendarWidget />
                     <SavedCurrencies />
-                    <ScheduledList />
                 </aside>
 
                 <section className="col-12 col-xl-9 d-flex flex-column gap-3">
                     <div className="row g-3">
-                        {rates.slice(0, 3).map((rate, i) => (
+                        {rates.slice(0, 3).map(rate => (
                             <div className="col-12 col-md-4" key={rate.quote}>
                                 <CurrencyCard
                                     rate={rate}
-                                    highlighted={i === 0}
                                     selected={rate.quote === active}
                                     onSelect={() => setSelectedQuote(rate.quote)}
                                 />
@@ -53,7 +51,6 @@ function App() {
                             currentRate={activeRate.rate}
                         />
                     )}
-                    <TransactionsTable />
                 </section>
             </div>
         </DashboardLayout>

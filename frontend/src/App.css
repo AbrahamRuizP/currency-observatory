@@ -17,8 +17,10 @@
 .sidebar-rail { width: 76px; }
 
 .rail-active {
-  display: grid; place-items: center;
-  width: 38px; height: 38px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background: var(--primary);
   color: #fff;
@@ -97,4 +99,14 @@
   font-size: 0.8rem;
   text-align: center;
   word-break: break-word;
+}
+
+/* CURRENCY CARD */
+.currency-card {
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.currency-card:hover {
+  transform: translateY(-2px);
 }
