@@ -3,7 +3,7 @@ import {MOCK_SAVED} from "../data/mockData.ts";
 
 export default function SavedCurrencies() {
     return (
-        <div className="card card-soft p-3">
+        <div className="card card-soft p-3 h-100">
         <div className="d-flex justify-content-between align-items-center mb-2">
         <span className="small fw-bold">Saved Currency's</span>
     <a href="#" className="small text-primary text-decoration-none">See all</a>

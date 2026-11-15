@@ -1,27 +1,57 @@
+// components/CurrencyCard.tsx
 import formatRate from "../utils/formatRate.ts";
 import type {Rate} from "../types/Rate.ts";
 
 interface CardProps {
     rate: Rate;
-    highlighted?: boolean;   // Blue variant (first card in the design)
-    selected?: boolean;      // Drives the chart below
+    selected?: boolean;      // Blue variant + drives the chart below
     onSelect?: () => void;
 }
 
-function CurrencyCard({rate, highlighted = false, selected = false, onSelect}: CardProps) {
-    const formattedRate = formatRate(rate.rate);
+function CurrencyCard({rate, selected = false, onSelect}: CardProps) {
+    // Invert the raw number: parsing the already-formatted string would invert a rounded value
+    const inverted = formatRate(1 / rate.rate);
 
-    // Bootstrap utilities swap colors; no custom CSS needed for the blue card
-    const variant = highlighted ? "bg-primary text-white" : "card-soft";
+    // Bootstrap utilities swap colors; the active card is the blue one
+    const variant = selected ? "bg-primary text-white" : "card-soft";
+    const muted = selected ? "text-white-50" : "text-secondary";
 
     return (
         <div
             role="button"
+            tabIndex={0}
+            aria-pressed={selected}
             onClick={onSelect}
-            className={`card ${variant} p-3 ${selected ? "border border-primary" : ""}`}
+            // Keyboard support: a role="button" div must react to Enter and Space
+            onKeyDown={e => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    onSelect?.();
+                }
+            }}
+            className={`card currency-card ${variant} p-3`}
         >
-            {/* ...keep your existing inner markup, but replace text-secondary
-                with {highlighted ? "text-white-50" : "text-secondary"} */}
+            <div className="fw-semibold mb-3">
+                {rate.quote} to {rate.base}
+            </div>
+
+            <div className="d-flex align-items-end gap-3">
+                <div>
+                    <div className={`small ${muted}`}>{rate.quote}</div>
+                    <div className="fs-4 fw-bold lh-1">1.00</div>
+                </div>
+
+                <div className="fs-4 fw-bold lh-1">:</div>
+
+                <div>
+                    <div className={`small ${muted}`}>{rate.base}</div>
+                    <div className="fs-4 fw-bold lh-1">{inverted}</div>
+                </div>
+            </div>
+
+            <div className={`small mt-3 ${muted}`}>
+                Updated {rate.date}
+            </div>
         </div>
     );
 }
