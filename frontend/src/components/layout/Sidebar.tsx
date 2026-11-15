@@ -37,7 +37,7 @@ export default function Sidebar() {
                         className={`btn rounded-pill ${ activeId === icon.id ? 'btn-primary' : '' }`}
                         onClick={() => setActiveId(icon.id)}
                     >
-                        <icon.icon key={icon.id} className="text-secondary" size={18}/>
+                        <icon.icon key={icon.id} size={18}/>
                     </button>
                 ))}
             </div>
