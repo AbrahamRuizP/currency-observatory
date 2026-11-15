@@ -9,6 +9,7 @@ import ScheduledList from "./components/ScheduledList.tsx";
 import ExchangeRateOverview from "./components/ExchangeRateOverview.tsx";
 import TransactionsTable from "./components/TransactionsTable.tsx";
 import {useRates} from "./hooks/useRates.tsx";
+import LoadingPage from "./components/LoadingPage.tsx";
 
 function App() {
     const {rates, error, loading} = useRates();
@@ -16,7 +17,7 @@ function App() {
     const [selectedQuote, setSelectedQuote] = useState<string | null>(null);
 
     if (error) return <div className="p-5 text-danger">Error: {error}</div>;
-    if (loading) return <div className="p-5">Loading...</div>;
+    if (loading) return <LoadingPage />;
 
     const active = selectedQuote ?? rates[0]?.quote;
     const activeRate = rates.find(r => r.quote === active);
