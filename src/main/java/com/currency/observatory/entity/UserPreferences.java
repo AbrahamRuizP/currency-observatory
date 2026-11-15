@@ -1,5 +1,6 @@
 package com.currency.observatory.entity;
 
+import com.currency.observatory.entity.enums.Theme;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class UserPreferences {
     private UUID id;
 
     private Theme theme = Theme.LIGHT;
+    private int precision = 4;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
