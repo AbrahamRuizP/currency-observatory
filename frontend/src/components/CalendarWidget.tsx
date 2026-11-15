@@ -6,33 +6,37 @@ interface Props {
     onSelectDate?: (date: Date) => void; // Not wired yet: clicking does nothing for now
 }
 
-// Monday-based week containing the given date
-function getWeek(reference: Date): Date[] {
-    const monday = new Date(reference);
-    monday.setDate(reference.getDate() - ((reference.getDay() + 6) % 7));
-    return Array.from({length: 7}, (_, i) => {
-        const day = new Date(monday);
-        day.setDate(monday.getDate() + i);
+const DAYS_SHOWN = 5;
+
+// The last N days ending at "today" (oldest first, today last)
+function getLastDays(today: Date, count: number): Date[] {
+    return Array.from({length: count}, (_, i) => {
+        const day = new Date(today);
+        // setDate handles month and year boundaries for us
+        day.setDate(today.getDate() - (count - 1 - i));
         return day;
     });
 }
 
-export default function CalendarWidget({selectedDate = new Date(), onSelectDate}: Props) {
-    const week = getWeek(selectedDate);
+export default function CalendarWidget({selectedDate, onSelectDate}: Props) {
+    const today = new Date();
+    // The window is anchored to today, so selecting a day never shifts the strip
+    const days = getLastDays(today, DAYS_SHOWN);
+    const selected = selectedDate ?? today;
 
     return (
         <div className="card card-soft p-3">
             <div className="d-flex justify-content-between align-items-center mb-3">
                 <FiChevronLeft className="text-secondary"/>
                 <span className="fw-bold">
-                    {selectedDate.toLocaleDateString("en-US", {month: "long", year: "numeric"})}
+                    {today.toLocaleDateString("en-US", {month: "long", year: "numeric"})}
                 </span>
                 <FiChevronRight className="text-secondary"/>
             </div>
 
             <div className="d-flex justify-content-between">
-                {week.map(day => {
-                    const active = day.toDateString() === selectedDate.toDateString();
+                {days.map(day => {
+                    const active = day.toDateString() === selected.toDateString();
                     return (
                         <button
                             key={day.toISOString()}
