@@ -21,6 +21,10 @@ public class RateService {
     private final RateRepository repository;
     private final RateMapper mapper;
 
+    public List<Rate> findByQuoteIn(List<String> quotes) {
+        return repository.findByQuoteIn(quotes);
+    }
+
     public List<Rate> findAll() {
         return repository.findAll();
     }
