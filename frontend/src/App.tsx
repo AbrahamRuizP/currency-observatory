@@ -1,7 +1,6 @@
 // App.tsx
 import './App.css'
 import {useState} from "react";
-import {useRates} from "./hooks/useRates.ts";
 import DashboardLayout from "./layouts/DashboardLayout.tsx";
 import CurrencyCard from "./components/CurrencyCard.tsx";
 import CalendarWidget from "./components/CalendarWidget.tsx";
@@ -9,6 +8,7 @@ import SavedCurrencies from "./components/SavedCurrencies.tsx";
 import ScheduledList from "./components/ScheduledList.tsx";
 import ExchangeRateOverview from "./components/ExchangeRateOverview.tsx";
 import TransactionsTable from "./components/TransactionsTable.tsx";
+import {useRates} from "./hooks/useRates.tsx";
 
 function App() {
     const {rates, error, loading} = useRates();
