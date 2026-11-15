@@ -1,6 +1,7 @@
 // components/CurrencyCard.tsx
 import formatRate from "../utils/formatRate.ts";
 import type {Rate} from "../types/Rate.ts";
+import formatDate from "../utils/formatDate.ts";
 
 interface CardProps {
     rate: Rate;
@@ -50,7 +51,7 @@ function CurrencyCard({rate, selected = false, onSelect}: CardProps) {
             </div>
 
             <div className={`small mt-3 ${muted}`}>
-                Updated {rate.date}
+                Updated {formatDate(rate.date)}
             </div>
         </div>
     );
